@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saint Kai｜五个三维原型校准</title>
+  <style>
+    :root { color-scheme: dark; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: #050507; color: #f5f5f7; }
+    main { width: min(100% - 24px, 720px); margin: 0 auto; padding: 32px 0 56px; }
+    header { margin-bottom: 24px; }
+    h1 { margin: 0 0 8px; font-size: clamp(28px, 6vw, 52px); letter-spacing: -.045em; }
+    p { margin: 0; color: #98989f; line-height: 1.6; }
+    .controls { position: sticky; top: 12px; z-index: 2; display: flex; justify-content: space-between; gap: 12px; margin: 24px 0; padding: 8px; border: 1px solid #28282d; border-radius: 18px; background: rgba(16, 16, 20, .88); backdrop-filter: blur(18px); }
+    .group { display: flex; gap: 4px; }
+    button { min-width: 48px; min-height: 40px; border: 0; border-radius: 12px; background: transparent; color: #8e8e93; font: inherit; cursor: pointer; }
+    button[aria-pressed="true"] { background: #29292f; color: #c8ff42; }
+    .frame { position: relative; width: 418px; height: 418px; max-width: 100%; margin: 0 auto; overflow: hidden; outline: 1px solid #2a2a30; background: #070709; }
+    .reference, .prototype { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .reference { background-image: url("assets/saint-kai-b-grid.png"); background-size: 300% 300%; background-repeat: no-repeat; }
+    .prototype { display: block; object-fit: cover; }
+    .frame[data-mode="reference"] .prototype { display: none; }
+    .frame[data-mode="prototype"] .reference { display: none; }
+    .status { display: flex; justify-content: space-between; width: 418px; max-width: 100%; margin: 12px auto 0; color: #8e8e93; font-size: 13px; }
+    .status strong { color: #f5f5f7; font-weight: 600; }
+    .links { display: flex; justify-content: center; gap: 18px; margin-top: 28px; }
+    a { color: #c8ff42; text-decoration: none; }
+    @media (max-width: 450px) {
+      .controls { align-items: stretch; flex-direction: column; }
+      .group { justify-content: center; }
+      .frame { height: auto; aspect-ratio: 1; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>五个原型，逐个确认。</h1>
+      <p>固定 418 × 418、无滚动、无缓动。参考图与 Blender 原型渲染共用同一画框。</p>
+    </header>
+
+    <nav class="controls" aria-label="原型校准">
+      <div class="group" aria-label="点位">
+        <button type="button" data-state="04" aria-pressed="true">04</button>
+        <button type="button" data-state="06" aria-pressed="false">06</button>
+        <button type="button" data-state="03" aria-pressed="false">03</button>
+        <button type="button" data-state="02" aria-pressed="false">02</button>
+        <button type="button" data-state="05" aria-pressed="false">05</button>
+      </div>
+      <div class="group" aria-label="视图">
+        <button type="button" data-mode="reference" aria-pressed="true">参考</button>
+        <button type="button" data-mode="prototype" aria-pressed="false">原型</button>
+      </div>
+    </nav>
+
+    <div class="frame" data-mode="reference">
+      <div class="reference" role="img" aria-label="参考图 04"></div>
+      <img class="prototype" src="assets/saint-kai/prototypes/renders/04.png?v=1" width="418" height="418" decoding="async" alt="三维原型渲染 04">
+    </div>
+    <div class="status"><span>点位 <strong data-current-state>04</strong></span><span data-current-mode>参考图</span></div>
+    <div class="links">
+      <a data-model-link href="assets/saint-kai/prototypes/saint-kai-04.glb">下载 GLB</a>
+      <a href="assets/saint-kai/prototypes/manifest.json">查看清单</a>
+    </div>
+  </main>
+
+  <script>
+    const positions = { "04": "0% 50%", "06": "100% 50%", "03": "100% 0%", "02": "50% 0%", "05": "50% 50%" };
+    const frame = document.querySelector(".frame");
+    const reference = document.querySelector(".reference");
+    const prototype = document.querySelector(".prototype");
+    const currentState = document.querySelector("[data-current-state]");
+    const currentMode = document.querySelector("[data-current-mode]");
+    const modelLink = document.querySelector("[data-model-link]");
+    let state = "04";
+    let mode = "reference";
+
+    function update() {
+      frame.dataset.mode = mode;
+      reference.style.backgroundPosition = positions[state];
+      reference.setAttribute("aria-label", `参考图 ${state}`);
+      prototype.src = `assets/saint-kai/prototypes/renders/${state}.png?v=1`;
+      prototype.alt = `三维原型渲染 ${state}`;
+      currentState.textContent = state;
+      currentMode.textContent = mode === "reference" ? "参考图" : "Blender 原型";
+      modelLink.href = `assets/saint-kai/prototypes/saint-kai-${state}.glb`;
+      document.querySelectorAll("[data-state]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.state === state)));
+      document.querySelectorAll("[data-mode]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.mode === mode)));
+    }
+
+    document.querySelectorAll("[data-state]").forEach(button => button.addEventListener("click", () => { state = button.dataset.state; update(); }));
+    document.querySelectorAll("[data-mode]").forEach(button => button.addEventListener("click", () => { mode = button.dataset.mode; update(); }));
+    update();
+  </script>
+</body>
+</html>

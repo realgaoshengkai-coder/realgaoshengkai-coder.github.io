@@ -1,0 +1,35 @@
+{
+  "source": "saint-kai-b-grid.png cells 04, 06, 03, 02, 05",
+  "canvas": [
+    418,
+    418
+  ],
+  "mode": "independent_reference_prototypes",
+  "states": {
+    "04": {
+      "asset": "saint-kai-04.glb",
+      "render": "renders/04.png",
+      "vertices": 18920
+    },
+    "06": {
+      "asset": "saint-kai-06.glb",
+      "render": "renders/06.png",
+      "vertices": 43616
+    },
+    "03": {
+      "asset": "saint-kai-03.glb",
+      "render": "renders/03.png",
+      "vertices": 30560
+    },
+    "02": {
+      "asset": "saint-kai-02.glb",
+      "render": "renders/02.png",
+      "vertices": 28136
+    },
+    "05": {
+      "asset": "saint-kai-05.glb",
+      "render": "renders/05.png",
+      "vertices": 29000
+    }
+  }
+}

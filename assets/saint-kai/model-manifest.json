@@ -1,0 +1,24 @@
+{
+  "asset": "saint-kai-morph.glb",
+  "generator": "Blender 3.3.1",
+  "mesh": "SaintKaiMorph",
+  "vertices": 8960,
+  "public_states": [
+    "04",
+    "06",
+    "03",
+    "02",
+    "05"
+  ],
+  "morph_targets": [
+    "GUIDE_HIDE",
+    "GUIDE_06_03",
+    "STATE_06",
+    "STATE_03",
+    "STATE_02",
+    "STATE_05"
+  ],
+  "topology": "fixed",
+  "reference": "saint-kai-b-grid.png cells 04, 06, 03, 02, 05",
+  "runtime_texture_blending": false
+}

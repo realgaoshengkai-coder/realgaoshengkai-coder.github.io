@@ -1,0 +1,45 @@
+{
+  "task": "将高光片段提前到开场，删除前 2 秒空镜，并适配 9:16 竖屏画布",
+  "input": {
+    "duration_seconds": 20.183,
+    "sha256": "7865611b9c04e9e570c7345c193fcd0aede327042b7b1a5d17b2111ea5ab9cd0"
+  },
+  "output": {
+    "duration_seconds": 16.033,
+    "width": 540,
+    "height": 960,
+    "fps": 30,
+    "sha256": "2d1776a6a716a89dcf0845bc3da30a61625401395449b880b1b485dd884f9f78"
+  },
+  "operations": [
+    {
+      "source": "00:12 至 00:18",
+      "output": "00:00 至 00:06",
+      "action": "高光前置"
+    },
+    {
+      "source": "00:00 至 00:02",
+      "output": "已移除",
+      "action": "删除空镜"
+    },
+    {
+      "source": "整段",
+      "output": "540×960",
+      "action": "适配 9:16 画布"
+    }
+  ],
+  "review_points": [
+    {
+      "time": "00:00",
+      "label": "抖音开场"
+    },
+    {
+      "time": "00:06",
+      "label": "主体衔接"
+    },
+    {
+      "time": "00:16",
+      "label": "成片结尾"
+    }
+  ]
+}
