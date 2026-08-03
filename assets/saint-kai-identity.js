@@ -103,9 +103,11 @@ if (video && stage && panels.length === 6) {
     requestRender();
   }
 
-  function alignHash() {
+  async function alignHash() {
     const target = document.getElementById(location.hash.slice(1));
     if (target?.matches("[data-identity-panel]")) {
+      await Promise.all([...document.querySelectorAll(".home-product-visual")]
+        .map((image) => image.decode().catch(() => {})));
       requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
     }
   }
