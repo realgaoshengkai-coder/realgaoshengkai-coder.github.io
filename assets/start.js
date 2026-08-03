@@ -15,7 +15,7 @@ const products = {
     repo: "https://github.com/realgaoshengkai-coder/adhd-codex",
     plugin: "adhd-codex",
     prompt: "用 ADHD Codex 从相互隔离的认知视角并行探索这个开放问题，再由独立 critic 聚类、排除陷阱，并深化 Top 3。",
-    boundaries: ["灵感来源原版为 UditAkhourii/adhd", "本版直接使用 Codex collaboration 编排", "完整 21 项差异已写入公开 README"]
+    boundaries: ["灵感来源原版为 UditAkhourii/adhd", "本版直接使用 Codex collaboration 编排", "六项关键差异已写入公开 README"]
   },
   "sculptor-skill": {
     repo: "https://github.com/realgaoshengkai-coder/sculptor-skill",

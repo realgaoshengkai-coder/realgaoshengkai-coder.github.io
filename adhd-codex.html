@@ -40,118 +40,43 @@
     </section>
 
     <section class="product-shot-sequence difference-section" id="differences" aria-labelledby="differences-title">
-      <p class="section-index">Upstream → Codex Native</p>
-      <h2 id="differences-title">与原版的 21 项完整差异。</h2>
-      <p class="difference-intro">对照基于原版 <a href="https://github.com/UditAkhourii/adhd/commit/eaeba4e98b388b8d1d31a31572d91ff989e04c00" target="_blank" rel="noreferrer"><code>eaeba4e</code></a>。没有列出的核心方法保持不变。</p>
+      <p class="section-index">Upstream → Direct effect</p>
+      <h2 id="differences-title">真正改变结果的 6 项差异。</h2>
+      <p class="difference-intro">只保留会改变执行成本、分支独立性和最终 shortlist 的差异。对照基于原版 <a href="https://github.com/UditAkhourii/adhd/commit/eaeba4e98b388b8d1d31a31572d91ff989e04c00" target="_blank" rel="noreferrer"><code>eaeba4e</code></a>。</p>
       <div class="difference-matrix">
-        <div class="difference-head" aria-hidden="true"><span>维度</span><span>原版 ADHD</span><span>ADHD Codex</span></div>
+        <div class="difference-head" aria-hidden="true"><span>变化</span><span>原版 ADHD</span><span>ADHD Codex 与效果</span></div>
         <article class="difference-row">
-          <h3>名称与触发</h3>
-          <div><span>原版 ADHD</span><p><code>adhd</code>、<code>/adhd</code>、ADHD mode</p></div>
-          <div><span>ADHD Codex</span><p><code>adhd-codex</code>、<code>$adhd-codex</code>、<code>/adhd-codex</code>、ADHD Codex mode</p></div>
+          <h3>原生执行</h3>
+          <div><span>原版 ADHD</span><p>跨 Agent Skill，并另有 Claude Agent SDK、CLI 与 library 路径</p></div>
+          <div><span>ADHD Codex 与效果</span><p>全程使用 Codex collaboration primitives。<strong>效果：</strong>不切换第二套编排 runtime。</p></div>
         </article>
         <article class="difference-row">
-          <h3>产品载体</h3>
-          <div><span>原版 ADHD</span><p>跨 Agent Skill；另有 Claude Agent SDK 驱动的 Node/TS library 与 CLI</p></div>
-          <div><span>ADHD Codex</span><p>Codex 插件中的单一 Skill；不封装上游 Node runtime</p></div>
+          <h3>隔离与阶段屏障</h3>
+          <div><span>原版 ADHD</span><p>要求分支隔离；library 通过并发 Promise 等待</p></div>
+          <div><span>ADHD Codex 与效果</span><p>root 直接创建子任务，统一使用 <code>fork_turns=&quot;none&quot;</code>，每阶段全量 dispatch 后再等待。<strong>效果：</strong>分支更少互相锚定，阶段状态可见。</p></div>
         </article>
         <article class="difference-row">
-          <h3>编排原语</h3>
-          <div><span>原版 ADHD</span><p>Skill 使用通用 Agent/Task 表述；library 使用 Claude Agent SDK、<code>p-limit</code></p></div>
-          <div><span>ADHD Codex</span><p>直接使用 <code>collaboration.spawn_agent</code>、<code>wait_agent</code>、<code>list_agents</code></p></div>
+          <h3>固定模式与成本</h3>
+          <div><span>原版 ADHD</span><p>通过 calibration 或 API 参数按任务调整规模</p></div>
+          <div><span>ADHD Codex 与效果</span><p>Quick 3 × 4 / Top 1，Default 5 × 8 / Top 3，Deep 15 × 4 / Top 3。<strong>效果：</strong>调用成本和输出规模可以预期。</p></div>
         </article>
         <article class="difference-row">
-          <h3>任务拓扑</h3>
-          <div><span>原版 ADHD</span><p>要求分支隔离，但不规定必须是 root 的直接子任务</p></div>
-          <div><span>ADHD Codex</span><p>frame、critic、focus 全部是 root 的直接子任务；正常运行只占一层 spawned depth</p></div>
+          <h3>Deep 搜索质量</h3>
+          <div><span>原版 ADHD</span><p>没有专门的全 15-frame 模式和 provenance-preserving dedupe 合同</p></div>
+          <div><span>ADHD Codex 与效果</span><p>Deep 覆盖全部 15 个 frame，先语义去重并保留来源，再进入选择。<strong>效果：</strong>搜索更宽，但 shortlist 不被同义答案占满。</p></div>
         </article>
         <article class="difference-row">
-          <h3>上下文隔离</h3>
-          <div><span>原版 ADHD</span><p>通用 fresh context / isolated process</p></div>
-          <div><span>ADHD Codex</span><p>每个子任务明确使用 <code>fork_turns=&quot;none&quot;</code>，只传问题、必要上下文和本阶段输入</p></div>
+          <h3>独立收敛</h3>
+          <div><span>原版 ADHD</span><p>Node engine 并行执行 score 与 cluster；Skill 未规定新的 critic 任务拓扑</p></div>
+          <div><span>ADHD Codex 与效果</span><p>consolidate 与 score 使用两个新的独立 critic tasks，生成 Agent 不参与评判。<strong>效果：</strong>降低自评和同一判断路径带来的相关偏差。</p></div>
         </article>
         <article class="difference-row">
-          <h3>阶段同步</h3>
-          <div><span>原版 ADHD</span><p>Skill 要求 Phase 1 完成后再收敛；library 用 <code>Promise.all</code></p></div>
-          <div><span>ADHD Codex</span><p>每一阶段先整批 dispatch，再等待所有任务 terminal；未过 barrier 不启动下一阶段</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>任务命名</h3>
-          <div><span>原版 ADHD</span><p>未规定可追踪命名</p></div>
-          <div><span>ADHD Codex</span><p>固定使用 <code>frame_&lt;id&gt;</code>、<code>critic_&lt;stage&gt;</code>、<code>focus_&lt;rank&gt;</code></p></div>
-        </article>
-        <article class="difference-row">
-          <h3>idea 的承载方式</h3>
-          <div><span>原版 ADHD</span><p>library 为带 UUID 的 <code>Idea</code> 对象；Skill 未限定任务粒度</p></div>
-          <div><span>ADHD Codex</span><p>每个 frame Agent 一次返回该框架的 idea records，不为每条 idea 再开子任务</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>默认规模</h3>
-          <div><span>原版 ADHD</span><p>Skill 默认 5 × 6；library 默认 <code>framesPerRun=5</code>、<code>ideasPerFrame=6</code>、<code>topK=3</code></p></div>
-          <div><span>ADHD Codex</span><p>固定 5 × 8，最终深化 Top 3</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>Quick</h3>
-          <div><span>原版 ADHD</span><p>原版只在 calibration 中建议按任务规模调整，没有独立 mode token</p></div>
-          <div><span>ADHD Codex</span><p>显式 <code>quick / 快速</code>：3 × 4，深化 Top 1</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>Deep</h3>
-          <div><span>原版 ADHD</span><p>没有专门的全框架模式</p></div>
-          <div><span>ADHD Codex</span><p>显式 <code>deep / 深入</code>：15 个内置 frame 各 4 条，去重聚类后深化 Top 3</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>问题重写</h3>
-          <div><span>原版 ADHD</span><p>Node engine 默认先执行 strip-anchors reframe pass</p></div>
-          <div><span>ADHD Codex</span><p>没有额外模型重写阶段；保留用户问题，只由 pre-flight 判断是否适合发散</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>critic 顺序</h3>
-          <div><span>原版 ADHD</span><p>Node engine 在分支返回后并行 score 与 cluster；Skill 可在当前 orchestrator 内收敛</p></div>
-          <div><span>ADHD Codex</span><p>先用独立 critic consolidate，再用新的 critic score；生成 Agent 不参与评判</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>语义去重</h3>
-          <div><span>原版 ADHD</span><p>原版 cluster，但没有 deep 专用的 provenance-preserving dedupe 合同</p></div>
-          <div><span>ADHD Codex</span><p>Deep 先合并语义重复项，保留最佳措辞和全部来源 frame，再聚类</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>评分与选择</h3>
-          <div><span>原版 ADHD</span><p>novelty 35% + viability 40% + fit 25%；shortlist 2 至 4，并标记 non-obvious pick</p></div>
-          <div><span>ADHD Codex</span><p>Default/Quick 保留同一权重；Deep 改用 relevance、actionability、information gain、diversity，并逐项重算 diversity</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>并发策略</h3>
-          <div><span>原版 ADHD</span><p>Node engine 以 <code>p-limit</code> 控制，默认 concurrency 4，可配置</p></div>
-          <div><span>ADHD Codex</span><p>每阶段全量并行；Deep 需要 15 个可用 frame slots，不足时报告容量而不是在 root 中假装并行</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>输出</h3>
-          <div><span>原版 ADHD</span><p>常规输出 wide set、shortlist、traps、focus、provocation；library 返回结构化 <code>RunResult</code></p></div>
-          <div><span>ADHD Codex</span><p>Default/Quick 保留完整展示；Deep 只显示 Top 3、合并数量、来源 frame、风险和第一步，不倾倒 60 条池</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>进度信号</h3>
-          <div><span>原版 ADHD</span><p>Node library 提供 <code>onEvent</code> 回调</p></div>
-          <div><span>ADHD Codex</span><p>依赖 Codex 任务树和 terminal 状态；没有独立事件 API</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>结构校验与恢复</h3>
-          <div><span>原版 ADHD</span><p>Node engine 使用 Zod、UUID 和 parse fallback</p></div>
-          <div><span>ADHD Codex</span><p>当前是 Skill orchestration contract；要求 JSON 输出，但尚未内置 Schema 校验、run ID、自动重试或失败恢复</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>依赖与批处理</h3>
-          <div><span>原版 ADHD</span><p>可安装 <code>adhd-agent</code> CLI/library，依赖 Claude Agent SDK、<code>p-limit</code>、Zod</p></div>
-          <div><span>ADHD Codex</span><p>Skill 自身无外部 runtime 依赖，也不提供独立 CLI 或 batch API</p></div>
-        </article>
-        <article class="difference-row">
-          <h3>Source spec</h3>
-          <div><span>原版 ADHD</span><p>原版仓库内保留 <code>SOURCE-SPEC.md</code></p></div>
-          <div><span>ADHD Codex</span><p>不复制原文，直接链接并注明原版提交与 MIT 来源</p></div>
+          <h3>选择与呈现</h3>
+          <div><span>原版 ADHD</span><p>常规 shortlist、non-obvious pick、focus 与 provocation</p></div>
+          <div><span>ADHD Codex 与效果</span><p>Deep 逐项重算 diversity，只交付 Top 3、来源、风险和第一步。<strong>效果：</strong>最终方向差异更大，也不向用户倾倒 60 条候选。</p></div>
         </article>
       </div>
-      <a class="secondary-action difference-github" href="https://github.com/realgaoshengkai-coder/adhd-codex#与原版的完整差异" target="_blank" rel="noreferrer">在 GitHub 查看完整对照 ↗</a>
+      <a class="secondary-action difference-github" href="https://github.com/realgaoshengkai-coder/adhd-codex#真正影响结果的-6-个差异" target="_blank" rel="noreferrer">在 GitHub 查看关键对照 ↗</a>
     </section>
   </main>
 
