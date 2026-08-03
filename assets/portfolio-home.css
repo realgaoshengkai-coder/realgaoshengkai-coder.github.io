@@ -263,6 +263,13 @@ main,
   box-shadow: 0 0 0 5px color-mix(in srgb, var(--acid) 22%, transparent);
 }
 
+.brand-logo {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+}
+
 .site-nav,
 .hud {
   display: flex;
@@ -3824,6 +3831,75 @@ body#top > .site-header .github-nav {
 
   html[lang="zh-CN"] .hero-manifesto h1 em {
     transform: translateY(0.08em);
+  }
+}
+
+/* Keep the only external action reachable without duplicating the full navigation. */
+.product-detail-page .site-header .site-nav {
+  grid-column: 3;
+  justify-self: end;
+}
+
+@media (max-width: 860px) {
+  body#top > .site-header .github-nav,
+  .product-detail-page .site-header .site-nav {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  body#top > .site-header .github-nav a,
+  .product-detail-page .site-header .detail-launch {
+    display: inline-flex;
+  }
+
+  .product-detail-page .site-header .site-nav a:not(.detail-launch) {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  body#top > .site-header {
+    gap: 8px;
+  }
+
+  body#top > .site-header .brand {
+    min-width: 0;
+  }
+
+  body#top > .site-header .brand > span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  body#top > .site-header .github-nav {
+    display: flex;
+  }
+
+  body#top > .site-header .github-nav a,
+  .product-detail-page .site-header .detail-launch {
+    min-width: 72px;
+    min-height: 44px;
+    padding-inline: 12px;
+    white-space: nowrap;
+  }
+
+  .product-detail-page .site-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .product-detail-page .product-brand {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .product-detail-page .product-brand span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
