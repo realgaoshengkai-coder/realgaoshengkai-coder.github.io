@@ -12,10 +12,10 @@ const products = {
     boundaries: ["只在显式请求写 Goal 时触发", "不执行或检查下游任务", "不把实现猜测写进持久 Goal"]
   },
   "adhd-codex": {
-    repo: "https://github.com/UditAkhourii/adhd",
-    command: "open 'codex://threads/019fb10e-864d-7830-8f94-5d5882bc6954'",
+    repo: "https://github.com/realgaoshengkai-coder/adhd-codex",
+    plugin: "adhd-codex",
     prompt: "用 ADHD Codex 从相互隔离的认知视角并行探索这个开放问题，再由独立 critic 聚类、排除陷阱，并深化 Top 3。",
-    boundaries: ["灵感来源原版为 UditAkhourii/adhd", "本版直接使用 Codex collaboration 编排", "当前仍是 Skill orchestration contract"]
+    boundaries: ["灵感来源原版为 UditAkhourii/adhd", "本版直接使用 Codex collaboration 编排", "完整 21 项差异已写入公开 README"]
   },
   "sculptor-skill": {
     repo: "https://github.com/realgaoshengkai-coder/sculptor-skill",
