@@ -42,8 +42,6 @@ if (video && stage && panels.length === 6) {
       href: "#asterflow",
     },
   ];
-  const stateLabel = stage.querySelector("[data-identity-state]");
-  const frameLabel = stage.querySelector("[data-identity-progress]");
   const status = stage.querySelector("[data-video-status]");
   const pageLinks = [...document.querySelectorAll("[data-identity-page]")];
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
@@ -51,8 +49,9 @@ if (video && stage && panels.length === 6) {
   let lastFrame = -1;
 
   function progress() {
-    const end = Math.max(1, document.documentElement.scrollHeight - innerHeight);
-    return Math.min(1, Math.max(0, scrollY / end));
+    const start = panels[0].offsetTop;
+    const end = panels.at(-1).offsetTop;
+    return Math.min(1, Math.max(0, (scrollY - start) / Math.max(1, end - start)));
   }
 
   function activeState() {
@@ -81,8 +80,6 @@ if (video && stage && panels.length === 6) {
       video.pause();
     }
 
-    stateLabel.textContent = page.name;
-    frameLabel.textContent = `${String(frame + 1).padStart(3, "0")} / ${frameCount}`;
     pageLinks.forEach((link, index) => {
       if (index === state) link.setAttribute("aria-current", "true");
       else link.removeAttribute("aria-current");
@@ -116,6 +113,7 @@ if (video && stage && panels.length === 6) {
   console.assert(pages.every((page, index) => page.href === pageLinks[index].getAttribute("href")));
   console.assert(Math.round(0.5 * (frameCount - 1)) === 242);
   console.assert(Math.round(1 * (frameCount - 1)) === 484);
+  console.assert(panels[0].offsetTop < panels.at(-1).offsetTop);
 }
 
 const launchLinks = [...document.querySelectorAll(".home-product .primary-action[data-product]")];
