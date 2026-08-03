@@ -116,6 +116,7 @@ if (video && stage && panels.length === 6) {
   else video.addEventListener("loadedmetadata", ready, { once: true });
   video.addEventListener("error", () => {
     status.textContent = "视频载入失败";
+    status.hidden = false;
   });
   addEventListener("scroll", requestRender, { passive: true });
   addEventListener("resize", requestRender, { passive: true });
