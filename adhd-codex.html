@@ -36,7 +36,7 @@
         <article class="skill-principle-card"><span>02 / 这版加强</span><h3>把方法绑定到 Codex 任务树。</h3><p>root 直接调度 frame、critic 与 focus Agent；每个分支使用 <code>fork_turns="none"</code> 隔离上下文，整批 dispatch 后设置阶段 barrier，并用稳定任务名保留拓扑。</p></article>
         <article class="skill-principle-card"><span>03 / 更 Codex Native</span><h3>不用外部编排器模拟 Codex。</h3><p>生成、等待、状态收集和并行深化直接映射到 Codex collaboration primitives；idea 是 frame 返回的记录，而不是额外子线程，因此保留发散宽度，又尊重 Codex 的线程池。</p></article>
       </div>
-      <p class="adaptation-boundary"><strong>当前边界：</strong>这是 Codex-native orchestration contract。结构化结果的 Schema 校验、跨运行 run ID 与自动失败恢复仍是下一轮 runtime 化工作。<br><span>灵感来源：<a class="inline-source-link" href="https://github.com/UditAkhourii/adhd" target="_blank" rel="noreferrer">ADHD by UditAkhourii（MIT）↗</a></span></p>
+      <p class="adaptation-boundary"><strong>来源：我为什么要改原版</strong><br>原版验证了“隔离视角发散、独立 critic 收敛”的价值，但跨 Agent Skill、CLI 与 Node library 的编排没有利用 Codex 已有的任务树、上下文隔离和阶段等待能力。我保留方法，把运行方式重写为 Codex collaboration primitives，让发散、收敛和状态都留在同一个 Codex 任务中。<br><span>原版：<a class="inline-source-link" href="https://github.com/UditAkhourii/adhd" target="_blank" rel="noreferrer">ADHD by UditAkhourii（MIT）↗</a></span></p>
     </section>
   </main>
 
