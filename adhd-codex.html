@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ADHD Codex：把并行发散方法绑定到 Codex collaboration runtime 的原生 Skill。">
+  <meta name="theme-color" content="#000000">
+  <title>ADHD Codex｜并行发散引擎</title>
+  <link rel="icon" href="assets/adhd-codex-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/portfolio-home.css?v=portfolio-adhd-1">
+</head>
+<body class="product-detail-page skill-product-page" data-story-product="adhd-codex">
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <header class="site-header" aria-label="主导航">
+    <a class="product-brand" href="index.html#adhd-codex"><img src="assets/adhd-codex-logo.svg" width="34" height="34" alt=""><span>ADHD Codex</span></a>
+    <nav class="site-nav"><a href="index.html#adhd-codex">返回作品集</a><a class="detail-launch" href="codex://threads/019fb10e-864d-7830-8f94-5d5882bc6954">Codex 版本 ↗</a></nav>
+  </header>
+
+  <main class="product-detail-main" id="main-content" tabindex="-1">
+    <section class="product-detail-hero">
+      <p class="section-index">Codex Native · Parallel Divergent Ideation</p>
+      <h1>让不同思路先彼此不知道，<em>再认真收敛。</em></h1>
+      <p class="product-detail-lead">一个问题先进入多个隔离认知视角；所有分支返回后，独立 critic 才开始聚类、评分、排除陷阱，并并行深化最值得做的方向。</p>
+      <div class="product-detail-actions"><a class="primary-action" href="codex://threads/019fb10e-864d-7830-8f94-5d5882bc6954">打开 Codex 构建任务 <span aria-hidden="true">→</span></a><a class="secondary-action" href="#origin">查看实现说明</a></div>
+    </section>
+
+    <section class="skill-detail-visual-wrap" aria-label="ADHD Codex 运行拓扑">
+      <img class="skill-detail-visual" src="assets/products/adhd-codex-product.svg" width="1280" height="720" alt="一个问题被分发到五个隔离认知视角，再由独立 critic 聚类评分并深化 Top 3 的运行拓扑">
+    </section>
+
+    <section class="product-shot-sequence" id="origin" aria-labelledby="adhd-origin-title">
+      <p class="section-index">Method → Codex adaptation</p>
+      <h2 id="adhd-origin-title">先扩展搜索空间，再用阶段屏障收敛。</h2>
+      <div class="skill-principle-grid">
+        <article class="skill-principle-card"><span>01 / 核心流程</span><h3>隔离发散，独立批评。</h3><p>多个认知框架互不共享上下文地生成候选；全部返回后，独立 critic 才开始评分、聚类、排除陷阱并选出继续深化的方向。</p></article>
+        <article class="skill-principle-card"><span>02 / 这版加强</span><h3>把方法绑定到 Codex 任务树。</h3><p>root 直接调度 frame、critic 与 focus Agent；每个分支使用 <code>fork_turns="none"</code> 隔离上下文，整批 dispatch 后设置阶段 barrier，并用稳定任务名保留拓扑。</p></article>
+        <article class="skill-principle-card"><span>03 / 更 Codex Native</span><h3>不用外部编排器模拟 Codex。</h3><p>生成、等待、状态收集和并行深化直接映射到 Codex collaboration primitives；idea 是 frame 返回的记录，而不是额外子线程，因此保留发散宽度，又尊重 Codex 的线程池。</p></article>
+      </div>
+      <p class="adaptation-boundary"><strong>当前边界：</strong>这是 Codex-native orchestration contract。结构化结果的 Schema 校验、跨运行 run ID 与自动失败恢复仍是下一轮 runtime 化工作。<br><span>灵感来源：<a class="inline-source-link" href="https://github.com/UditAkhourii/adhd" target="_blank" rel="noreferrer">ADHD by UditAkhourii（MIT）↗</a></span></p>
+    </section>
+  </main>
+
+  <footer class="site-footer compact-footer"><p>ADHD Codex · 并行发散引擎。</p><nav class="footer-links"><a href="goal-signal.html">上一个产品</a><a href="codex://threads/019fb10e-864d-7830-8f94-5d5882bc6954">打开 Codex 版本</a><a href="index.html#adhd-codex">作品集首页</a><a href="sculptor-skill.html">下一个产品</a></nav></footer>
+</body>
+</html>

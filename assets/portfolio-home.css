@@ -3708,11 +3708,23 @@ body::before {
   .identity-state-nav {
     width: calc(100% - 28px);
     justify-content: space-around;
+    padding-inline: 6px;
   }
 
   .identity-state-nav a {
     min-width: 0;
     flex: 1;
+    overflow: hidden;
+    padding-inline: 4px;
+  }
+
+  .identity-state-nav a small {
+    font-size: 0;
+  }
+
+  .identity-state-nav a small::after {
+    content: attr(data-short);
+    font-size: 0.56rem;
   }
 }
 
@@ -3979,6 +3991,38 @@ body#top > .site-header .github-nav {
   margin: 0;
   color: var(--muted);
   line-height: 1.65;
+}
+
+.skill-principle-card code {
+  color: #d9ff59;
+  font: 600 0.82em/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.inline-source-link {
+  display: block;
+  margin-top: 16px;
+  color: var(--acid);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.adaptation-boundary {
+  max-width: 68em;
+  margin: 26px 0 0;
+  padding: 20px 22px;
+  border-left: 2px solid var(--acid);
+  background: rgba(16, 17, 22, 0.72);
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.adaptation-boundary strong {
+  color: var(--fg);
+}
+
+.adaptation-boundary .inline-source-link {
+  display: inline;
+  margin: 0;
 }
 
 @media (max-width: 760px) {

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">ADHD Codex 并行发散与独立收敛运行拓扑</title>
+  <desc id="desc">一个问题被分发到五个隔离认知视角，再由独立 critic 聚类评分，最后并行深化三个结果。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#12141a"/>
+      <stop offset="1" stop-color="#07080b"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1280" height="720" rx="34" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1278" height="718" rx="33" fill="none" stroke="#ffffff" stroke-opacity=".14"/>
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+    <circle cx="66" cy="64" r="9" fill="#c0fe04"/>
+    <text x="91" y="72" fill="#f5f5f7" font-size="25" font-weight="700" letter-spacing="2">ADHD CODEX</text>
+    <text x="1156" y="71" fill="#8f929a" font-size="15" text-anchor="end" letter-spacing="2">ONE TASK · MANY MINDS</text>
+
+    <rect x="54" y="274" width="188" height="154" rx="24" fill="#171920" stroke="#ffffff" stroke-opacity=".18"/>
+    <text x="82" y="309" fill="#c0fe04" font-size="14" font-weight="700" letter-spacing="2">PROBLEM</text>
+    <text x="82" y="349" fill="#f5f5f7" font-size="29" font-weight="700">一个开放问题</text>
+    <text x="82" y="384" fill="#9699a2" font-size="17">禁止前三个标准答案</text>
+
+    <path d="M242 351h54" stroke="#c0fe04" stroke-width="3" stroke-linecap="round"/>
+    <path d="m288 343 10 8-10 8" fill="none" stroke="#c0fe04" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <text x="326" y="145" fill="#8f929a" font-size="14" font-weight="700" letter-spacing="2">DIVERGE · FORK_TURNS = NONE</text>
+    <g font-size="15">
+      <rect x="316" y="171" width="248" height="72" rx="16" fill="#171920" stroke="#c0fe04" stroke-opacity=".45"/>
+      <circle cx="348" cy="207" r="8" fill="#c0fe04"/><text x="371" y="213" fill="#f5f5f7">FRAME 01 · hardware</text>
+      <rect x="316" y="257" width="248" height="72" rx="16" fill="#171920" stroke="#72d9c9" stroke-opacity=".42"/>
+      <circle cx="348" cy="293" r="8" fill="#72d9c9"/><text x="371" y="299" fill="#f5f5f7">FRAME 02 · regulator</text>
+      <rect x="316" y="343" width="248" height="72" rx="16" fill="#171920" stroke="#a995ff" stroke-opacity=".48"/>
+      <circle cx="348" cy="379" r="8" fill="#a995ff"/><text x="371" y="385" fill="#f5f5f7">FRAME 03 · inversion</text>
+      <rect x="316" y="429" width="248" height="72" rx="16" fill="#171920" stroke="#ffb45c" stroke-opacity=".42"/>
+      <circle cx="348" cy="465" r="8" fill="#ffb45c"/><text x="371" y="471" fill="#f5f5f7">FRAME 04 · speedrunner</text>
+      <rect x="316" y="515" width="248" height="72" rx="16" fill="#171920" stroke="#ff6f91" stroke-opacity=".42"/>
+      <circle cx="348" cy="551" r="8" fill="#ff6f91"/><text x="371" y="557" fill="#f5f5f7">FRAME 05 · 3am on-call</text>
+    </g>
+
+    <path d="M584 126v492" stroke="#ffffff" stroke-opacity=".12" stroke-dasharray="7 9"/>
+    <text x="603" y="145" fill="#8f929a" font-size="14" font-weight="700" letter-spacing="2">BARRIER</text>
+    <text x="603" y="171" fill="#f5f5f7" font-size="17">先全部返回，再开始判断</text>
+
+    <path d="M584 351h80" stroke="#ffffff" stroke-opacity=".36" stroke-width="3"/>
+    <rect x="664" y="247" width="214" height="208" rx="26" fill="#171920" stroke="#ffffff" stroke-opacity=".2"/>
+    <text x="694" y="287" fill="#72d9c9" font-size="14" font-weight="700" letter-spacing="2">INDEPENDENT CRITICS</text>
+    <text x="694" y="331" fill="#f5f5f7" font-size="28" font-weight="700">聚类 → 评分</text>
+    <text x="694" y="369" fill="#9b9ea7" font-size="16">合并同源想法</text>
+    <text x="694" y="396" fill="#9b9ea7" font-size="16">标出好看但危险的陷阱</text>
+    <rect x="694" y="418" width="154" height="4" rx="2" fill="#72d9c9" filter="url(#glow)"/>
+
+    <path d="M878 351h70" stroke="#a995ff" stroke-width="3"/>
+    <path d="m938 343 10 8-10 8" fill="none" stroke="#a995ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="980" y="145" fill="#8f929a" font-size="14" font-weight="700" letter-spacing="2">FOCUS · TOP 3</text>
+    <g>
+      <rect x="958" y="171" width="266" height="112" rx="20" fill="#1a1c22" stroke="#c0fe04" stroke-opacity=".6"/>
+      <text x="988" y="207" fill="#c0fe04" font-size="14" font-weight="700">01 / NON-OBVIOUS</text><text x="988" y="245" fill="#f5f5f7" font-size="21" font-weight="700">可落地的反直觉方向</text>
+      <rect x="958" y="301" width="266" height="112" rx="20" fill="#1a1c22" stroke="#72d9c9" stroke-opacity=".5"/>
+      <text x="988" y="337" fill="#72d9c9" font-size="14" font-weight="700">02 / SYSTEM</text><text x="988" y="375" fill="#f5f5f7" font-size="21" font-weight="700">跨视角组合方案</text>
+      <rect x="958" y="431" width="266" height="112" rx="20" fill="#1a1c22" stroke="#a995ff" stroke-opacity=".55"/>
+      <text x="988" y="467" fill="#a995ff" font-size="14" font-weight="700">03 / FIRST MOVE</text><text x="988" y="505" fill="#f5f5f7" font-size="21" font-weight="700">风险与第一步</text>
+    </g>
+    <text x="54" y="668" fill="#6f727b" font-size="14" letter-spacing="1.5">ROOT ORCHESTRATION  /  ISOLATED CHILD AGENTS  /  TRACEABLE TASK TOPOLOGY</text>
+  </g>
+</svg>

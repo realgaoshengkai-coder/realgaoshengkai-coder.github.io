@@ -2,26 +2,32 @@ const video = document.querySelector("#saint-kai-video");
 const stage = document.querySelector(".identity-stage");
 const panels = [...document.querySelectorAll("[data-identity-panel]")];
 
-if (video && stage && panels.length === 6) {
+if (video && stage && panels.length === 7) {
   const frameCount = 485;
   const pages = [
     {
       name: "主页",
       title: "说一句，就开始。",
-      description: "五个 Codex Native 产品，把模糊意图变成可执行、可验证的结果。",
+      description: "六个 Codex Native 产品，把模糊意图变成可执行、可验证的结果。",
       href: "#home",
-    },
-    {
-      name: "Sculptor Skill",
-      title: "把风格，提炼成规则。",
-      description: "从多源造型证据提炼可执行的 3D Style Genome 与下游 Skill。",
-      href: "#sculptor",
     },
     {
       name: "Goal Signal Skill",
       title: "先稳定目标，再持续推进。",
       description: "把长期目标与一次性路径、权限和失败上下文准确分开。",
       href: "#goal-signal",
+    },
+    {
+      name: "ADHD Codex",
+      title: "先隔离发散，再认真收敛。",
+      description: "让多个认知视角独立生成，再由独立 critic 聚类、评分和深化。",
+      href: "#adhd-codex",
+    },
+    {
+      name: "Sculptor Skill",
+      title: "把风格，提炼成规则。",
+      description: "从多源造型证据提炼可执行的 3D Style Genome 与下游 Skill。",
+      href: "#sculptor",
     },
     {
       name: "TakeTrace",
@@ -125,7 +131,7 @@ if (video && stage && panels.length === 6) {
   else addEventListener("load", alignHash, { once: true });
 
   console.assert(frameCount === 485);
-  console.assert(panels.length === 6);
+  console.assert(panels.length === 7);
   console.assert(pages.length === pageLinks.length);
   console.assert(pages.every((page, index) => page.href === pageLinks[index].getAttribute("href")));
   console.assert(Math.round(0.5 * (frameCount - 1)) === 242);
@@ -136,8 +142,9 @@ if (video && stage && panels.length === 6) {
 
 const launchLinks = [...document.querySelectorAll(".home-product .primary-action[data-product]")];
 const productNames = {
-  sculptor: "Sculptor Skill",
   "goal-signal": "Goal Signal Skill",
+  "adhd-codex": "ADHD Codex",
+  sculptor: "Sculptor Skill",
   taketrace: "TakeTrace",
   pagetrace: "PageTrace",
   asterflow: "AsterFlow",
@@ -177,4 +184,4 @@ launchLinks.forEach((link) => {
   });
 });
 
-console.assert(launchLinks.length === 5);
+console.assert(launchLinks.length === 6);

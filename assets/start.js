@@ -5,17 +5,23 @@ const form = $("#start-form");
 const message = $("#message");
 
 const products = {
-  "sculptor-skill": {
-    repo: "https://github.com/realgaoshengkai-coder/sculptor-skill",
-    plugin: "sculptor-skill",
-    prompt: "用 Sculptor 提炼这组 3D 参考的造型语言，先区分 observed、reported、inferred 和 unknown，再输出可复用的 Style Genome 与下游 Skill。",
-    boundaries: ["单图只形成 provisional profile", "生成工具不是唯一证据来源", "身份与原创性分别验证"]
-  },
   "goal-signal": {
     repo: "https://github.com/realgaoshengkai-coder/goal-signal",
     plugin: "goal-signal",
     prompt: "用 Goal Signal 把这段粗略意图压成一个持久 Goal，并只保留目标任务无法可靠恢复的一次性上下文。",
     boundaries: ["只在显式请求写 Goal 时触发", "不执行或检查下游任务", "不把实现猜测写进持久 Goal"]
+  },
+  "adhd-codex": {
+    repo: "https://github.com/UditAkhourii/adhd",
+    command: "open 'codex://threads/019fb10e-864d-7830-8f94-5d5882bc6954'",
+    prompt: "用 ADHD Codex 从相互隔离的认知视角并行探索这个开放问题，再由独立 critic 聚类、排除陷阱，并深化 Top 3。",
+    boundaries: ["灵感来源原版为 UditAkhourii/adhd", "本版直接使用 Codex collaboration 编排", "当前仍是 Skill orchestration contract"]
+  },
+  "sculptor-skill": {
+    repo: "https://github.com/realgaoshengkai-coder/sculptor-skill",
+    plugin: "sculptor-skill",
+    prompt: "用 Sculptor 提炼这组 3D 参考的造型语言，先区分 observed、reported、inferred 和 unknown，再输出可复用的 Style Genome 与下游 Skill。",
+    boundaries: ["单图只形成 provisional profile", "生成工具不是唯一证据来源", "身份与原创性分别验证"]
   },
   taketrace: {
     repo: "https://github.com/realgaoshengkai-coder/taketrace",
@@ -42,7 +48,7 @@ function selectedProduct() {
 }
 
 function setProduct(product) {
-  const value = products[product] ? product : "sculptor-skill";
+  const value = products[product] ? product : "goal-signal";
   const radio = form.querySelector(`input[name="product"][value="${value}"]`);
   radio.checked = true;
   message.value = products[value].prompt;
@@ -51,7 +57,7 @@ function setProduct(product) {
 
 function render(product, prompt) {
   const entry = products[product];
-  const command = `codex plugin marketplace add ${entry.repo}\ncodex plugin add ${entry.plugin}@${entry.plugin}`;
+  const command = entry.command || `codex plugin marketplace add ${entry.repo}\ncodex plugin add ${entry.plugin}@${entry.plugin}`;
   $("#empty-plan").hidden = true;
   $("#plan-result").hidden = false;
   $("#install-command").textContent = command;
