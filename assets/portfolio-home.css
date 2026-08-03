@@ -3587,7 +3587,7 @@ body::before {
 
 .home-product {
   display: grid;
-  min-height: 76svh;
+  min-height: 100svh;
   align-items: center;
   padding: clamp(72px, 10svh, 108px) var(--gutter);
   scroll-margin-top: 0;
@@ -3694,7 +3694,7 @@ body::before {
   }
 
   .home-product {
-    min-height: 70svh;
+    min-height: 100svh;
     padding-inline: 22px;
   }
 
