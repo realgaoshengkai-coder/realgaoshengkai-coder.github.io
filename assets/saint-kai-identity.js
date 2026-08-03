@@ -76,7 +76,7 @@ if (video && stage && panels.length === 6) {
     const page = pages[state];
     if (frame !== lastFrame) {
       lastFrame = frame;
-      video.currentTime = (frame / (frameCount - 1)) * video.duration;
+      video.currentTime = frameTime(frame);
       video.pause();
     }
 
@@ -90,6 +90,11 @@ if (video && stage && panels.length === 6) {
     if (queued) return;
     queued = true;
     requestAnimationFrame(render);
+  }
+
+  function frameTime(frame) {
+    const frameDuration = video.duration / frameCount;
+    return Math.min(video.duration - frameDuration, frame * frameDuration);
   }
 
   function ready() {
@@ -114,6 +119,7 @@ if (video && stage && panels.length === 6) {
   console.assert(Math.round(0.5 * (frameCount - 1)) === 242);
   console.assert(Math.round(1 * (frameCount - 1)) === 484);
   console.assert(panels[0].offsetTop < panels.at(-1).offsetTop);
+  console.assert(frameTime(frameCount - 1) < video.duration);
 }
 
 const launchLinks = [...document.querySelectorAll(".home-product .primary-action[data-product]")];
