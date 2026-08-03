@@ -103,6 +103,13 @@ if (video && stage && panels.length === 6) {
     requestRender();
   }
 
+  function alignHash() {
+    const target = document.getElementById(location.hash.slice(1));
+    if (target?.matches("[data-identity-panel]")) {
+      requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
+    }
+  }
+
   if (video.readyState >= 1) ready();
   else video.addEventListener("loadedmetadata", ready, { once: true });
   video.addEventListener("error", () => {
@@ -111,6 +118,8 @@ if (video && stage && panels.length === 6) {
   addEventListener("scroll", requestRender, { passive: true });
   addEventListener("resize", requestRender, { passive: true });
   reducedMotion.addEventListener("change", requestRender);
+  if (document.readyState === "complete") alignHash();
+  else addEventListener("load", alignHash, { once: true });
 
   console.assert(frameCount === 485);
   console.assert(panels.length === 6);
