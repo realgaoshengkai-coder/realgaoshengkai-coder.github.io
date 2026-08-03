@@ -3160,6 +3160,10 @@ body {
 }
 
 /* Saint Kai identity sequence: every source frame is a scroll stop. */
+html:has(body#top .identity-stage) {
+  scroll-padding-top: 0;
+}
+
 .identity-sequence {
   position: static;
   z-index: auto;
