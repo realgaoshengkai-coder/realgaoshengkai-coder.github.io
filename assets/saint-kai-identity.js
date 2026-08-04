@@ -8,7 +8,7 @@ if (video && stage && panels.length === 7) {
     {
       name: "主页",
       title: "说一句，就开始。",
-      description: "六个 Codex Native 产品，把模糊意图变成可执行、可验证的结果。",
+      description: "六个 AI Agent 产品，把模糊意图变成可执行、可验证的结果。",
       href: "#home",
     },
     {

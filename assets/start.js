@@ -17,12 +17,6 @@ const products = {
     prompt: "用 ADHD Codex 从相互隔离的认知视角并行探索这个开放问题，再由独立 critic 聚类、排除陷阱，并深化 Top 3。",
     boundaries: ["灵感来源原版为 UditAkhourii/adhd", "本版直接使用 Codex collaboration 编排", "六项关键差异已写入公开 README"]
   },
-  "sculptor-skill": {
-    repo: "https://github.com/realgaoshengkai-coder/sculptor-skill",
-    plugin: "sculptor-skill",
-    prompt: "用 Sculptor 提炼这组 3D 参考的造型语言，先区分 observed、reported、inferred 和 unknown，再输出可复用的 Style Genome 与下游 Skill。",
-    boundaries: ["单图只形成 provisional profile", "生成工具不是唯一证据来源", "身份与原创性分别验证"]
-  },
   taketrace: {
     repo: "https://github.com/realgaoshengkai-coder/taketrace",
     plugin: "taketrace",
