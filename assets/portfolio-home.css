@@ -3237,14 +3237,9 @@ html:has(body#top .identity-stage) {
   background: #000;
   object-fit: contain;
   filter: none;
-  opacity: 0;
-  transform: translate(-50%, -50%);
-  transition: opacity 180ms ease-out;
-  will-change: contents;
-}
-
-.identity-stage.is-ready #saint-kai-video {
   opacity: 1;
+  transform: translate(-50%, -50%);
+  will-change: contents;
 }
 
 .identity-video-status {
